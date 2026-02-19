@@ -1,6 +1,7 @@
 import { ServicesSection } from "@/components/services-section"
 import { CapabilitiesSection } from "@/components/capabilities-section"
 import { SuccessStoriesSection } from "@/components/success-stories-section"
+import { GetStartedSection } from "@/components/get-started-section"
 import { GrainOverlay } from "@/components/grain-overlay"
 
 export default function Page() {
@@ -72,6 +73,9 @@ export default function Page() {
 
       {/* Success Stories */}
       <SuccessStoriesSection />
+
+      {/* Get Started */}
+      <GetStartedSection />
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-border/30 px-6 py-8 text-center lg:px-8">
