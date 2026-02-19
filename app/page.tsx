@@ -1,4 +1,5 @@
 import { ServicesSection } from "@/components/services-section"
+import { CapabilitiesSection } from "@/components/capabilities-section"
 import { GrainOverlay } from "@/components/grain-overlay"
 
 export default function Page() {
@@ -64,6 +65,9 @@ export default function Page() {
 
       {/* Services */}
       <ServicesSection />
+
+      {/* Capabilities */}
+      <CapabilitiesSection />
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-border/30 px-6 py-8 text-center lg:px-8">
