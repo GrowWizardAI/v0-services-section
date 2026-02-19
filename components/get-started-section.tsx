@@ -154,17 +154,69 @@ export function GetStartedSection() {
           ))}
         </div>
 
-        {/* Calendly booking widget */}
-        <div id="contact-form" className="mt-16">
+        {/* Calendly booking widget — wizard-themed */}
+        <div id="contact-form" className="relative mt-20">
+          {/* Decorative sparkles */}
+          <div className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2">
+            <svg
+              width="120"
+              height="40"
+              viewBox="0 0 120 40"
+              fill="none"
+              className="text-primary/30"
+              aria-hidden="true"
+            >
+              {/* Center star */}
+              <path
+                d="M60 4l2.5 8 8-2.5-8 2.5 2.5 8-2.5-8-8 2.5 8-2.5L60 4z"
+                fill="currentColor"
+                className="animate-pulse"
+              />
+              {/* Left sparkle */}
+              <path
+                d="M24 18l1.5 5 5-1.5-5 1.5 1.5 5-1.5-5-5 1.5 5-1.5L24 18z"
+                fill="currentColor"
+                opacity="0.6"
+                className="animate-pulse [animation-delay:0.5s]"
+              />
+              {/* Right sparkle */}
+              <path
+                d="M96 14l1.5 5 5-1.5-5 1.5 1.5 5-1.5-5-5 1.5 5-1.5L96 14z"
+                fill="currentColor"
+                opacity="0.6"
+                className="animate-pulse [animation-delay:1s]"
+              />
+            </svg>
+          </div>
+
           <div className="mb-8 text-center">
-            <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              Book a Discovery Call
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-3 py-1 backdrop-blur-sm">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3.5 w-3.5 text-primary"
+                aria-hidden="true"
+              >
+                <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .963L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                <path d="M20 3v4M22 5h-4" />
+              </svg>
+              <span className="text-[10px] font-medium uppercase tracking-widest text-primary">
+                The Magic Starts Here
+              </span>
+            </div>
+            <h3 className="text-balance text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+              Summon Your Free Discovery Call
             </h3>
-            <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
-              {"Pick a time that works for you. We'll discuss your use case and map out a plan -- no commitment required."}
+            <p className="mx-auto mt-2 max-w-lg text-pretty text-sm leading-relaxed text-muted-foreground">
+              {"Pick a time, and we'll conjure up a plan tailored to your business. No spells required -- just a conversation."}
             </p>
           </div>
-          <div className="overflow-hidden rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm">
+
+          <div className="overflow-hidden rounded-xl border border-primary/20 bg-card/30 shadow-[0_0_60px_rgba(52,211,153,0.04)] backdrop-blur-sm">
             <iframe
               src={`${CALENDLY_URL}?hide_gdpr_banner=1&background_color=0a0a0a&text_color=fafafa&primary_color=34d399`}
               width="100%"
@@ -174,6 +226,11 @@ export function GetStartedSection() {
               className="block w-full"
             />
           </div>
+
+          {/* Trust line below Calendly */}
+          <p className="mt-4 text-center text-xs text-muted-foreground/50">
+            {"30 minutes. Zero obligation. 100% focused on your business."}
+          </p>
         </div>
       </div>
     </section>
