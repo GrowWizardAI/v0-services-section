@@ -1,3 +1,5 @@
+import { createAdminClient } from "@/lib/supabase/admin"
+
 export const maxDuration = 15
 
 export async function POST(req: Request) {
@@ -12,11 +14,22 @@ export async function POST(req: Request) {
     return Response.json({ error: "No report to send." }, { status: 400 })
   }
 
-  // Log the lead for now — this gets captured in server logs / Vercel Logs
-  // Replace with a database insert or CRM API call when ready
-  console.log(
-    `[GrowWizardAI Lead] Email: ${email} | URL: ${url} | Timestamp: ${new Date().toISOString()}`
-  )
+  // Store the lead in Supabase
+  try {
+    const supabase = createAdminClient()
+    const { error: dbError } = await supabase.from("leads").insert({
+      email,
+      url,
+      report,
+      source: "audit_snapshot",
+    })
+    if (dbError) {
+      console.error("[GrowWizardAI] Failed to store lead:", dbError.message)
+    }
+  } catch (err) {
+    console.error("[GrowWizardAI] Supabase insert error:", err)
+    // Don't fail the request — still attempt to send the email
+  }
 
   // If RESEND_API_KEY is configured, send the actual email
   if (process.env.RESEND_API_KEY) {
