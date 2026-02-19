@@ -28,7 +28,7 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "GrowWizardAI <audits@growwizardai.com>",
+          from: "GrowWizardAI <onboarding@resend.dev>",
           to: [email],
           subject: `Your AI Readiness Snapshot for ${url}`,
           html: buildEmailHtml(url, report),
