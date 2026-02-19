@@ -107,16 +107,16 @@ function TierCard({ tier }: { tier: (typeof tiers)[0] }) {
         ))}
       </ul>
 
-      <button
-        type="button"
-        className={`mt-auto w-full rounded-lg border px-4 py-2.5 text-xs font-medium tracking-wide transition-all duration-300 ${
+      <a
+        href="#contact-form"
+        className={`mt-auto flex w-full items-center justify-center rounded-lg border px-4 py-2.5 text-xs font-medium tracking-wide transition-all duration-300 ${
           tier.highlighted
             ? "border-primary/30 bg-primary/10 text-primary backdrop-blur-md hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
             : "border-border/40 bg-transparent text-foreground/80 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-primary"
         }`}
       >
         {tier.name === "Enterprise" ? "Contact Sales" : "Get Started"}
-      </button>
+      </a>
     </div>
   )
 }
@@ -130,7 +130,7 @@ export function GetStartedSection() {
   }
 
   return (
-    <section className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="get-started" className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
       {/* Background accent */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute right-0 top-1/3 h-[500px] w-[600px] translate-x-1/4 rounded-full bg-primary/[0.03] blur-[100px]" />
@@ -167,7 +167,7 @@ export function GetStartedSection() {
 
           {/* Right: Contact form */}
           <div className="lg:w-2/5">
-            <div className="flex h-full flex-col rounded-xl border border-border/40 bg-card/30 p-8 backdrop-blur-sm">
+            <div id="contact-form" className="flex h-full flex-col rounded-xl border border-border/40 bg-card/30 p-8 backdrop-blur-sm">
               <h3 className="text-lg font-semibold tracking-tight text-foreground">
                 Talk to our team
               </h3>

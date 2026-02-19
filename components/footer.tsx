@@ -2,19 +2,19 @@ const footerColumns = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Contact", href: "#" },
+      { label: "About", href: "#services" },
+      { label: "Results", href: "#success-stories" },
+      { label: "Capabilities", href: "#capabilities" },
+      { label: "Contact", href: "#contact-form" },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "AI Automation", href: "#" },
-      { label: "Custom LLMs", href: "#" },
-      { label: "Workflow Optimization", href: "#" },
-      { label: "Consulting", href: "#" },
+      { label: "AI Automation", href: "#services" },
+      { label: "Custom LLMs", href: "#services" },
+      { label: "Workflow Optimization", href: "#services" },
+      { label: "Consulting", href: "#contact-form" },
     ],
   },
   {

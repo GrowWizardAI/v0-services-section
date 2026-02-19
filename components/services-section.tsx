@@ -58,7 +58,7 @@ const stats = [
 
 export function ServicesSection() {
   return (
-    <section className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+    <section id="services" className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-primary/[0.04] blur-[100px]" />

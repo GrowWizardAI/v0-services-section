@@ -74,9 +74,12 @@ export function BentoCard({
 
       {/* CTA on hover */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center bg-gradient-to-t from-card via-card/90 to-transparent pb-5 pt-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <span className="inline-flex items-center gap-1.5 rounded-lg border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]">
+        <a
+          href="#contact-form"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
+        >
           {"Learn more"} <span aria-hidden="true">&rarr;</span>
-        </span>
+        </a>
       </div>
     </div>
   )
