@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react"
 
 const navLinks = [
-  { label: "Products", href: "#products" },
-  { label: "Services", href: "#services" },
-  { label: "Docs", href: "#docs" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Products", href: "#services" },
+  { label: "Services", href: "#capabilities" },
+  { label: "Results", href: "#success-stories" },
+  { label: "Pricing", href: "#get-started" },
 ]
 
 function Logo() {

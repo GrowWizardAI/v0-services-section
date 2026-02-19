@@ -85,7 +85,7 @@ const capabilities = [
 
 export function CapabilitiesSection() {
   return (
-    <section className="relative z-10 px-4 pb-24 sm:px-6 lg:px-8">
+    <section id="capabilities" className="relative z-10 px-4 pb-24 sm:px-6 lg:px-8">
       <div className="relative mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-12 text-center">

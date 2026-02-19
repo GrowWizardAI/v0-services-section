@@ -100,7 +100,7 @@ function StoryCard({
 
 export function SuccessStoriesSection() {
   return (
-    <section className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="success-stories" className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
       {/* Background accent */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-x-1/3 -translate-y-1/2 rounded-full bg-primary/[0.03] blur-[100px]" />
