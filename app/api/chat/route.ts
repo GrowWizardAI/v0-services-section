@@ -4,8 +4,12 @@ import {
   streamText,
   UIMessage,
 } from "ai"
+import { cookies } from "next/headers"
 
 export const maxDuration = 30
+
+const MAX_CHAT_MESSAGES = 10
+const SESSION_COOKIE = "gw_chat_count"
 
 const SYSTEM_PROMPT = `You are the AI assistant for GrowWizardAI, a company that helps small and mid-size businesses automate repetitive work using custom AI solutions.
 
@@ -21,6 +25,18 @@ Tone: Friendly, confident, and jargon-free. You explain complex AI concepts in s
 Do not make up capabilities that are not listed above. If asked something outside your knowledge, say so honestly and suggest they book a call to discuss further.`
 
 export async function POST(req: Request) {
+  const cookieStore = await cookies()
+  const count = parseInt(cookieStore.get(SESSION_COOKIE)?.value ?? "0", 10)
+
+  if (count >= MAX_CHAT_MESSAGES) {
+    return Response.json(
+      {
+        error: `You've reached the ${MAX_CHAT_MESSAGES}-message demo limit for this session. Book a free discovery call to keep the conversation going!`,
+      },
+      { status: 429 }
+    )
+  }
+
   const { messages }: { messages: UIMessage[] } = await req.json()
 
   const result = streamText({
@@ -30,8 +46,15 @@ export async function POST(req: Request) {
     abortSignal: req.signal,
   })
 
-  return result.toUIMessageStreamResponse({
+  const response = result.toUIMessageStreamResponse({
     originalMessages: messages,
     consumeSseStream: consumeStream,
   })
+
+  response.headers.set(
+    "Set-Cookie",
+    `${SESSION_COOKIE}=${count + 1}; Path=/; SameSite=Lax; Max-Age=3600`
+  )
+
+  return response
 }

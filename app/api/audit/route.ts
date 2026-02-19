@@ -1,29 +1,52 @@
 import { generateText } from "ai"
+import { cookies } from "next/headers"
 
 export const maxDuration = 60
 
-const AUDIT_SYSTEM_PROMPT = `You are a website automation consultant for GrowWizardAI. Given a website URL, produce a concise automation audit report.
+const MAX_AUDITS = 2
+const SESSION_COOKIE = "gw_audit_count"
+
+const AUDIT_SYSTEM_PROMPT = `You are a senior website automation consultant for GrowWizardAI. Given a website URL, produce a structured "AI Readiness Snapshot" — a free, concise audit that demonstrates GrowWizardAI's expertise while giving the prospect genuine, actionable value.
 
 Structure your response EXACTLY like this, using these headings:
 
-## Site Overview
-A 1-2 sentence summary of what the site appears to do based on the URL/domain.
+## What We Found
+A 2-3 sentence overview of the business based on the URL/domain name, including the industry vertical and apparent primary offering.
 
-## Manual Processes We Can Automate
-A bulleted list of 3-5 specific manual tasks or workflows this type of business likely handles that AI could automate (e.g. customer support replies, lead qualification, data entry, content generation, scheduling).
+## Top 3 Tasks AI Can Handle For You
+A numbered list of exactly 3 specific, repetitive tasks this type of business almost certainly handles manually today. For each one, include:
+- The task name in bold
+- A one-sentence description of how AI would handle it
+- Example: "**Customer Inquiry Triage** — An AI agent reads every incoming email or form submission, categorizes it by urgency, and routes it to the right team member in under 5 seconds."
 
-## AI Opportunities
-A bulleted list of 2-4 high-impact AI integrations tailored to this business (e.g. custom chatbot trained on their knowledge base, automated email triage, smart CRM enrichment).
+## Quick Wins (Week 1)
+A bulleted list of 2-3 automations that could be live within the first week of working with GrowWizardAI. These should be simple, high-ROI wins (e.g. auto-replies, FAQ chatbot, lead scoring).
 
-## Estimated Efficiency Gains
-A short paragraph estimating time/cost savings in concrete terms (e.g. "10-15 hours per week" or "reduce response time from hours to seconds").
+## Estimated Impact
+A single short paragraph with concrete, specific estimates: hours saved per week, percentage reduction in response time, or projected cost savings. Use realistic ranges (e.g. "8-12 hours/week" not "thousands of hours").
 
-## Recommended Next Step
-A single sentence recommending they book a free discovery call to get a full, hands-on audit.
+## What a Full Audit Covers
+A bulleted list of exactly 4 items that the paid, hands-on audit includes that this free snapshot does not:
+- Full workflow mapping across every department
+- Custom AI prototype built on your real data
+- Integration blueprint for your existing tools (Slack, CRM, email, etc.)
+- 90-day implementation roadmap with projected ROI milestones
 
-Keep the entire report under 300 words. Be specific and practical, not generic. Write in a confident but approachable tone. Do not use jargon without explaining it.`
+Keep the entire report under 350 words. Be specific to the business type — never give generic advice. Write in a confident, approachable tone. Avoid jargon unless you immediately explain it.`
 
 export async function POST(req: Request) {
+  const cookieStore = await cookies()
+  const count = parseInt(cookieStore.get(SESSION_COOKIE)?.value ?? "0", 10)
+
+  if (count >= MAX_AUDITS) {
+    return Response.json(
+      {
+        error: `You've used your ${MAX_AUDITS} free audits for this session. Want a deeper analysis? Book a free discovery call and we'll do a full hands-on audit together.`,
+      },
+      { status: 429 }
+    )
+  }
+
   const { url }: { url: string } = await req.json()
 
   if (!url || typeof url !== "string") {
@@ -34,10 +57,15 @@ export async function POST(req: Request) {
     const { text } = await generateText({
       model: "google/gemini-2.0-flash",
       system: AUDIT_SYSTEM_PROMPT,
-      prompt: `Analyze this website and produce an automation audit report: ${url}`,
+      prompt: `Analyze this website and produce an AI Readiness Snapshot audit report: ${url}`,
     })
 
-    return Response.json({ report: text })
+    const response = Response.json({ report: text })
+    response.headers.set(
+      "Set-Cookie",
+      `${SESSION_COOKIE}=${count + 1}; Path=/; SameSite=Lax; Max-Age=3600`
+    )
+    return response
   } catch {
     return Response.json(
       { error: "Something went wrong generating the audit. Please try again." },

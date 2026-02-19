@@ -1,10 +1,13 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 
 type Tab = "chat" | "audit"
+
+const MAX_CHAT_MESSAGES = 10
+const MAX_AUDITS = 2
 
 const QUICK_ASKS = [
   "What services do you offer?",
@@ -12,11 +15,62 @@ const QUICK_ASKS = [
   "What makes you different?",
 ]
 
+function LimitBanner({ message }: { message: string }) {
+  return (
+    <div className="flex flex-col items-center gap-3 rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-5 text-center">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-6 w-6 text-primary"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 16v-4M12 8h.01" />
+      </svg>
+      <p className="text-sm text-muted-foreground">{message}</p>
+      <a
+        href="#contact-form"
+        className="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
+      >
+        Book a Free Discovery Call
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  )
+}
+
+function UsageCounter({ used, max, label }: { used: number; max: number; label: string }) {
+  const remaining = max - used
+  return (
+    <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60">
+      <div className="flex gap-0.5">
+        {Array.from({ length: max }).map((_, i) => (
+          <span
+            key={i}
+            className={`block h-1 w-3 rounded-full transition-colors ${
+              i < used ? "bg-primary/50" : "bg-border/50"
+            }`}
+          />
+        ))}
+      </div>
+      <span>
+        {remaining} {label} left
+      </span>
+    </div>
+  )
+}
+
 /* ------------------------------------------------------------------ */
 /*  Chat Tab                                                          */
 /* ------------------------------------------------------------------ */
 function ChatTab() {
   const [input, setInput] = useState("")
+  const [chatCount, setChatCount] = useState(0)
+  const [limitReached, setLimitReached] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const { messages, sendMessage, status } = useChat({
@@ -33,6 +87,11 @@ function ChatTab() {
         ],
       },
     ],
+    onError: useCallback((error: Error) => {
+      if (error.message?.includes("limit")) {
+        setLimitReached(true)
+      }
+    }, []),
   })
 
   const isLoading = status === "streaming" || status === "submitted"
@@ -43,8 +102,17 @@ function ChatTab() {
     }
   }, [messages])
 
+  // Track user message count
+  useEffect(() => {
+    const userMsgCount = messages.filter((m) => m.role === "user").length
+    setChatCount(userMsgCount)
+    if (userMsgCount >= MAX_CHAT_MESSAGES) {
+      setLimitReached(true)
+    }
+  }, [messages])
+
   function handleSend(text: string) {
-    if (!text.trim() || isLoading) return
+    if (!text.trim() || isLoading || limitReached) return
     sendMessage({ text })
     setInput("")
   }
@@ -114,6 +182,15 @@ function ChatTab() {
         </div>
       )}
 
+      {/* Limit reached */}
+      {limitReached && (
+        <div className="px-4 pb-3 sm:px-6">
+          <LimitBanner
+            message={`You've used all ${MAX_CHAT_MESSAGES} demo messages. Book a call to keep the conversation going with a real human!`}
+          />
+        </div>
+      )}
+
       {/* Input */}
       <div className="border-t border-border/30 px-4 py-3 sm:px-6">
         <form
@@ -126,13 +203,13 @@ function ChatTab() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about our services..."
-            disabled={isLoading}
+            placeholder={limitReached ? "Demo limit reached" : "Ask about our services..."}
+            disabled={isLoading || limitReached}
             className="flex-1 rounded-lg border border-border/50 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 disabled:opacity-50"
           />
           <button
             type="submit"
-            disabled={isLoading || !input.trim()}
+            disabled={isLoading || !input.trim() || limitReached}
             className="flex items-center justify-center rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)] disabled:opacity-40 disabled:hover:border-primary/30 disabled:hover:bg-primary/10 disabled:hover:shadow-none"
           >
             <svg
@@ -150,6 +227,11 @@ function ChatTab() {
             <span className="sr-only">Send message</span>
           </button>
         </form>
+        {chatCount > 0 && !limitReached && (
+          <div className="mt-2">
+            <UsageCounter used={chatCount} max={MAX_CHAT_MESSAGES} label="messages" />
+          </div>
+        )}
       </div>
     </div>
   )
@@ -163,9 +245,11 @@ function AuditTab() {
   const [report, setReport] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [auditCount, setAuditCount] = useState(0)
+  const [limitReached, setLimitReached] = useState(false)
 
   async function handleAudit() {
-    if (!url.trim()) return
+    if (!url.trim() || limitReached) return
     setLoading(true)
     setError("")
     setReport("")
@@ -177,10 +261,18 @@ function AuditTab() {
         body: JSON.stringify({ url: url.trim() }),
       })
       const data = await res.json()
-      if (!res.ok) {
+      if (res.status === 429) {
+        setLimitReached(true)
+        setError(data.error)
+      } else if (!res.ok) {
         setError(data.error || "Something went wrong.")
       } else {
         setReport(data.report)
+        const newCount = auditCount + 1
+        setAuditCount(newCount)
+        if (newCount >= MAX_AUDITS) {
+          setLimitReached(true)
+        }
       }
     } catch {
       setError("Network error. Please try again.")
@@ -191,9 +283,36 @@ function AuditTab() {
 
   return (
     <div className="flex flex-col gap-4 px-4 py-4 sm:px-6">
-      <p className="text-xs leading-relaxed text-muted-foreground">
-        {"Enter your website URL and we'll analyze it for automation opportunities -- completely free, no strings attached."}
-      </p>
+      <div className="flex flex-col gap-2">
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          {"Get a free AI Readiness Snapshot for your business. Here's what you'll receive:"}
+        </p>
+        <ul className="grid grid-cols-1 gap-1 text-[11px] text-muted-foreground/70 sm:grid-cols-2">
+          <li className="flex items-center gap-1.5">
+            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-primary/50" />
+            Top 3 tasks AI can automate
+          </li>
+          <li className="flex items-center gap-1.5">
+            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-primary/50" />
+            Quick wins for week one
+          </li>
+          <li className="flex items-center gap-1.5">
+            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-primary/50" />
+            Estimated time/cost savings
+          </li>
+          <li className="flex items-center gap-1.5">
+            <span className="h-1 w-1 flex-shrink-0 rounded-full bg-primary/50" />
+            What a full audit covers
+          </li>
+        </ul>
+      </div>
+
+      {/* Limit reached */}
+      {limitReached && !report && (
+        <LimitBanner
+          message={`You've used your ${MAX_AUDITS} free audits. Book a call and we'll do a full, hands-on audit together.`}
+        />
+      )}
 
       {/* URL input */}
       <form
@@ -207,17 +326,20 @@ function AuditTab() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="https://yourcompany.com"
-          disabled={loading}
+          disabled={loading || limitReached}
           className="flex-1 rounded-lg border border-border/50 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 disabled:opacity-50"
         />
         <button
           type="submit"
-          disabled={loading || !url.trim()}
+          disabled={loading || !url.trim() || limitReached}
           className="whitespace-nowrap rounded-lg border border-primary/30 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)] disabled:opacity-40 disabled:hover:border-primary/30 disabled:hover:bg-primary/10 disabled:hover:shadow-none"
         >
           {loading ? "Analyzing..." : "Run Free Audit"}
         </button>
       </form>
+      {auditCount > 0 && !limitReached && (
+        <UsageCounter used={auditCount} max={MAX_AUDITS} label="audits" />
+      )}
 
       {/* Loading state */}
       {loading && (
@@ -322,8 +444,8 @@ export function AiDemoSection() {
             Try Our AI — Free
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground">
-            Chat with our AI assistant or run an instant automation audit on
-            your website. No signup required.
+            Chat with our AI assistant or get a free AI Readiness Snapshot
+            for your website. No signup required.
           </p>
         </div>
 
@@ -379,7 +501,7 @@ export function AiDemoSection() {
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
-                Free URL Audit
+                AI Readiness Snapshot
               </span>
             </button>
           </div>
