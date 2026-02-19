@@ -119,12 +119,7 @@ function TierCard({ tier }: { tier: (typeof tiers)[0] }) {
   )
 }
 
-/* ---------------------------------------------------------------
-   CALENDLY CONFIG
-   Replace the placeholder URL below with your real Calendly link.
-   Example: https://calendly.com/your-name/30min
-   --------------------------------------------------------------- */
-const CALENDLY_URL = "https://calendly.com/your-link-here/30min"
+const CALENDLY_URL = "https://calendly.com/billhawk-growwizardai/30min"
 
 export function GetStartedSection() {
   return (
