@@ -247,6 +247,10 @@ function AuditTab() {
   const [error, setError] = useState("")
   const [auditCount, setAuditCount] = useState(0)
   const [limitReached, setLimitReached] = useState(false)
+  const [email, setEmail] = useState("")
+  const [emailSending, setEmailSending] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+  const [emailError, setEmailError] = useState("")
 
   async function handleAudit() {
     if (!url.trim() || limitReached) return
@@ -399,17 +403,106 @@ function AuditTab() {
             })}
           </div>
 
-          {/* CTA */}
-          <div className="flex items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-3">
-            <p className="text-xs text-muted-foreground">
-              {"Want the full, hands-on audit? "}
-              <a
-                href="#contact-form"
-                className="font-medium text-primary transition-colors hover:text-primary/80"
-              >
-                Book a free discovery call
-              </a>
-            </p>
+          {/* Email capture */}
+          <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-4">
+            {emailSent ? (
+              <div className="flex flex-col items-center gap-2 py-1 text-center">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4 text-primary"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <p className="text-xs font-medium text-foreground">
+                  Snapshot sent!
+                </p>
+                <p className="text-[11px] text-muted-foreground">
+                  {"Check your inbox. Want even more? "}
+                  <a
+                    href="#contact-form"
+                    className="font-medium text-primary transition-colors hover:text-primary/80"
+                  >
+                    Book a discovery call
+                  </a>
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2.5">
+                <div className="flex items-center gap-2">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4 flex-shrink-0 text-primary"
+                    aria-hidden="true"
+                  >
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <p className="text-xs text-muted-foreground">
+                    Want a copy? Enter your email and we{"'"}ll send this
+                    snapshot to your inbox.
+                  </p>
+                </div>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault()
+                    if (!email.trim() || emailSending) return
+                    setEmailSending(true)
+                    setEmailError("")
+                    try {
+                      const res = await fetch("/api/audit/email", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email: email.trim(), url, report }),
+                      })
+                      const data = await res.json()
+                      if (!res.ok) {
+                        setEmailError(data.error || "Something went wrong.")
+                      } else {
+                        setEmailSent(true)
+                      }
+                    } catch {
+                      setEmailError("Network error. Please try again.")
+                    } finally {
+                      setEmailSending(false)
+                    }
+                  }}
+                  className="flex gap-2"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@company.com"
+                    required
+                    disabled={emailSending}
+                    className="flex-1 rounded-lg border border-border/50 bg-transparent px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 disabled:opacity-50"
+                  />
+                  <button
+                    type="submit"
+                    disabled={emailSending || !email.trim()}
+                    className="whitespace-nowrap rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)] disabled:opacity-40"
+                  >
+                    {emailSending ? "Sending..." : "Email My Snapshot"}
+                  </button>
+                </form>
+                {emailError && (
+                  <p className="text-xs text-red-400">{emailError}</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}
