@@ -1,12 +1,15 @@
 import { ServicesSection } from "@/components/services-section"
+import { GrainOverlay } from "@/components/grain-overlay"
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="relative min-h-screen bg-background overflow-hidden">
+      <GrainOverlay />
+
       {/* Header */}
-      <header className="flex items-center justify-between px-6 py-5 lg:px-8">
+      <header className="relative z-10 flex items-center justify-between px-6 py-5 lg:px-8">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 backdrop-blur-sm">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -53,7 +56,7 @@ export default function Page() {
         </nav>
         <a
           href="#"
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          className="group relative rounded-xl border border-primary/20 bg-primary/10 px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
         >
           Get Started
         </a>
@@ -63,9 +66,9 @@ export default function Page() {
       <ServicesSection />
 
       {/* Footer */}
-      <footer className="border-t border-border/40 px-6 py-8 text-center lg:px-8">
+      <footer className="relative z-10 border-t border-border/30 px-6 py-8 text-center lg:px-8">
         <p className="text-xs text-muted-foreground">
-          &copy; 2026 GrowWizardAI. All rights reserved.
+          {"© 2026 GrowWizardAI. All rights reserved."}
         </p>
       </footer>
     </main>
