@@ -1,7 +1,5 @@
 "use client"
 
-import { useState, type FormEvent } from "react"
-
 const tiers = [
   {
     name: "Starter",
@@ -115,20 +113,20 @@ function TierCard({ tier }: { tier: (typeof tiers)[0] }) {
             : "border-border/40 bg-transparent text-foreground/80 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-primary"
         }`}
       >
-        {tier.name === "Enterprise" ? "Contact Sales" : "Get Started"}
+        {tier.name === "Enterprise" ? "Contact Sales" : "Book a Call"}
       </a>
     </div>
   )
 }
 
+/* ---------------------------------------------------------------
+   CALENDLY CONFIG
+   Replace the placeholder URL below with your real Calendly link.
+   Example: https://calendly.com/your-name/30min
+   --------------------------------------------------------------- */
+const CALENDLY_URL = "https://calendly.com/your-link-here/30min"
+
 export function GetStartedSection() {
-  const [submitted, setSubmitted] = useState(false)
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <section id="get-started" className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
       {/* Background accent */}
@@ -149,109 +147,37 @@ export function GetStartedSection() {
             Get Started
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
-            Choose the plan that fits your scale, or tell us about your use case
-            and we will architect a solution.
+            Choose the plan that fits your scale, then book a free discovery call
+            and we will architect a solution together.
           </p>
         </div>
 
-        {/* Two-column layout */}
-        <div className="flex flex-col gap-12 lg:flex-row lg:gap-10">
-          {/* Left: Pricing tiers */}
-          <div className="flex flex-col gap-4 lg:w-3/5">
-            <div className="grid gap-4 sm:grid-cols-3">
-              {tiers.map((tier) => (
-                <TierCard key={tier.name} tier={tier} />
-              ))}
-            </div>
+        {/* Pricing tiers */}
+        <div className="grid gap-4 sm:grid-cols-3">
+          {tiers.map((tier) => (
+            <TierCard key={tier.name} tier={tier} />
+          ))}
+        </div>
+
+        {/* Calendly booking widget */}
+        <div id="contact-form" className="mt-16">
+          <div className="mb-8 text-center">
+            <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+              Book a Discovery Call
+            </h3>
+            <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
+              {"Pick a time that works for you. We'll discuss your use case and map out a plan -- no commitment required."}
+            </p>
           </div>
-
-          {/* Right: Contact form */}
-          <div className="lg:w-2/5">
-            <div id="contact-form" className="flex h-full flex-col rounded-xl border border-border/40 bg-card/30 p-8 backdrop-blur-sm">
-              <h3 className="text-lg font-semibold tracking-tight text-foreground">
-                Talk to our team
-              </h3>
-              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                Describe your AI use case and we will respond within 24 hours
-                with a tailored proposal.
-              </p>
-
-              <div className="mt-1 h-px bg-border/30" />
-
-              {submitted ? (
-                <div className="my-auto flex flex-col items-center gap-3 py-12 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-6 w-6 text-primary"
-                      aria-hidden="true"
-                    >
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium text-foreground">
-                    Submitted successfully
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {"We'll be in touch within 24 hours."}
-                  </p>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="mt-6 flex flex-1 flex-col gap-5"
-                >
-                  {/* Company Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="company"
-                      className="text-xs font-medium text-foreground/80"
-                    >
-                      Company Name
-                    </label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      required
-                      placeholder="Acme Corp"
-                      className="w-full rounded-lg border border-border/50 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-
-                  {/* AI Use Case */}
-                  <div className="flex flex-1 flex-col gap-1.5">
-                    <label
-                      htmlFor="usecase"
-                      className="text-xs font-medium text-foreground/80"
-                    >
-                      AI Use Case
-                    </label>
-                    <textarea
-                      id="usecase"
-                      name="usecase"
-                      required
-                      rows={4}
-                      placeholder="Describe what you want to automate or optimize..."
-                      className="w-full flex-1 resize-none rounded-lg border border-border/50 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="w-full rounded-lg border border-primary/30 bg-primary/10 px-5 py-3 text-sm font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_24px_rgba(52,211,153,0.12)]"
-                  >
-                    Submit Inquiry
-                  </button>
-                </form>
-              )}
-            </div>
+          <div className="overflow-hidden rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm">
+            <iframe
+              src={`${CALENDLY_URL}?hide_gdpr_banner=1&background_color=0a0a0a&text_color=fafafa&primary_color=34d399`}
+              width="100%"
+              height="700"
+              frameBorder="0"
+              title="Schedule a call with GrowWizardAI"
+              className="block w-full"
+            />
           </div>
         </div>
       </div>
