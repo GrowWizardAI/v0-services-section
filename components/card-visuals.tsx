@@ -101,6 +101,16 @@ export function AutomationVisual() {
 }
 
 export function LlmVisual() {
+  const lines = [
+    { indent: 0, parts: [{ text: "class ", cls: "text-primary/80" }, { text: "CustomLLM", cls: "text-foreground/90" }, { text: "(BaseModel):", cls: "text-muted-foreground/40" }] },
+    { indent: 1, parts: [{ text: "def ", cls: "text-primary/80" }, { text: "__init__", cls: "text-foreground/70" }, { text: "(self, config):", cls: "text-muted-foreground/40" }] },
+    { indent: 2, parts: [{ text: "self.layers = ", cls: "text-muted-foreground/40" }, { text: "128", cls: "text-primary/70" }] },
+    { indent: 2, parts: [{ text: 'self.attention = ', cls: "text-muted-foreground/40" }, { text: '"multi-head"', cls: "text-foreground/60" }] },
+    { indent: 1, parts: [{ text: "def ", cls: "text-primary/80" }, { text: "forward", cls: "text-foreground/70" }, { text: "(self, x):", cls: "text-muted-foreground/40" }] },
+    { indent: 2, parts: [{ text: "x = self.", cls: "text-muted-foreground/40" }, { text: "embed", cls: "text-foreground/60" }, { text: "(x)", cls: "text-muted-foreground/40" }] },
+    { indent: 2, parts: [{ text: "return ", cls: "text-primary/60" }, { text: "self.", cls: "text-muted-foreground/40" }, { text: "generate", cls: "text-foreground/60" }, { text: "(x)", cls: "text-muted-foreground/40" }] },
+  ]
+
   return (
     <div className="flex flex-col gap-1.5 p-3 font-mono text-[11px] leading-relaxed h-full overflow-hidden">
       <div className="flex items-center gap-1.5 mb-1">
@@ -109,40 +119,20 @@ export function LlmVisual() {
         <span className="h-2 w-2 rounded-full bg-green-500/70" />
         <span className="ml-2 text-muted-foreground/50">model.py</span>
       </div>
-      <code className="text-muted-foreground/60">
-        <span className="text-primary/80">class</span>{" "}
-        <span className="text-foreground/90">CustomLLM</span>
-        <span className="text-muted-foreground/40">{"(BaseModel):"}</span>
-      </code>
-      <code className="text-muted-foreground/60 pl-4">
-        <span className="text-primary/80">def</span>{" "}
-        <span className="text-foreground/70">__init__</span>
-        <span className="text-muted-foreground/40">{"(self, config):"}</span>
-      </code>
-      <code className="text-muted-foreground/40 pl-8">
-        {"self.layers = "}
-        <span className="text-primary/70">128</span>
-      </code>
-      <code className="text-muted-foreground/40 pl-8">
-        {"self.attention = "}
-        <span className="text-foreground/60">{'"multi-head"'}</span>
-      </code>
-      <code className="text-muted-foreground/60 pl-4 mt-1">
-        <span className="text-primary/80">def</span>{" "}
-        <span className="text-foreground/70">forward</span>
-        <span className="text-muted-foreground/40">{"(self, x):"}</span>
-      </code>
-      <code className="text-muted-foreground/40 pl-8">
-        {"x = self."}
-        <span className="text-foreground/60">embed</span>{"(x)"}
-      </code>
-      <code className="text-muted-foreground/40 pl-8">
-        <span className="text-primary/60">return</span>{" self."}
-        <span className="text-foreground/60">generate</span>{"(x)"}
-      </code>
+      {lines.map((line, i) => (
+        <code
+          key={i}
+          className="text-muted-foreground/60"
+          style={{ paddingLeft: `${line.indent * 16}px` }}
+        >
+          {line.parts.map((part, j) => (
+            <span key={j} className={part.cls}>{part.text}</span>
+          ))}
+        </code>
+      ))}
       <div className="mt-auto flex items-center gap-2 pt-2 border-t border-border/30">
         <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-        <span className="text-primary/60 text-[10px]">Training... 98.7% accuracy</span>
+        <span className="text-primary/60 text-[10px]">{"Training... 98.7% accuracy"}</span>
       </div>
     </div>
   )

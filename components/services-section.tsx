@@ -58,16 +58,17 @@ const stats = [
 
 export function ServicesSection() {
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
       {/* Background glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.03] blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-primary/[0.04] blur-[100px]" />
+        <div className="absolute right-0 bottom-0 h-[400px] w-[600px] translate-x-1/4 translate-y-1/4 rounded-full bg-primary/[0.02] blur-[80px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-16 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             <span className="text-xs font-medium tracking-wide text-primary">
               Our Services
@@ -94,7 +95,7 @@ export function ServicesSection() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="flex flex-col items-center gap-1 rounded-xl border border-border/40 bg-card/50 p-5 text-center"
+              className="flex flex-col items-center gap-1 rounded-xl border border-border/40 bg-card/40 p-5 text-center backdrop-blur-sm"
             >
               <span className="text-2xl font-bold tracking-tight text-primary">
                 {stat.value}
