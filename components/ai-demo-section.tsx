@@ -403,6 +403,11 @@ function AuditTab() {
             })}
           </div>
 
+          {/* Disclaimer */}
+          <p className="text-center text-[10px] italic leading-relaxed text-muted-foreground/50">
+            {"This snapshot is based on your industry profile. Book a free discovery call for a hands-on audit using your real data and workflows."}
+          </p>
+
           {/* Email capture */}
           <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-4">
             {emailSent ? (
