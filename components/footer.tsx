@@ -1,3 +1,20 @@
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  )
+}
+
 const footerColumns = [
   {
     title: "Company",
@@ -116,6 +133,33 @@ export function Footer() {
                 </ul>
               </div>
             ))}
+
+            {/* Call Us column */}
+            <div className="flex flex-col gap-4">
+              <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/70">
+                Call Us
+              </h4>
+              <a
+                href="tel:+17172750202"
+                className="group flex items-center gap-3 rounded-xl border border-border/40 bg-card/30 px-4 py-4 transition-all duration-300 hover:border-primary/30 hover:bg-card/50 hover:shadow-[0_0_20px_rgba(52,211,153,0.08)]"
+                aria-label="Call us at (717) 275-0202"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 shadow-[0_0_12px_rgba(52,211,153,0.08)]">
+                  <PhoneIcon className="h-5 w-5 text-primary" />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-lg font-bold tracking-tight text-foreground">
+                    (717) 275-0202
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    Tap to call
+                  </span>
+                </div>
+              </a>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Speak directly with our team. Available Mon-Fri, 9am-6pm EST.
+              </p>
+            </div>
           </div>
         </div>
 
