@@ -1,5 +1,6 @@
 import { ServicesSection } from "@/components/services-section"
 import { CapabilitiesSection } from "@/components/capabilities-section"
+import { ComplianceSection } from "@/components/compliance-section"
 import { SuccessStoriesSection } from "@/components/success-stories-section"
 import { AiDemoSection } from "@/components/ai-demo-section"
 import { GetStartedSection } from "@/components/get-started-section"
@@ -21,6 +22,9 @@ export default function Page() {
 
       {/* Capabilities */}
       <CapabilitiesSection />
+
+      {/* Compliance */}
+      <ComplianceSection />
 
       {/* Success Stories */}
       <SuccessStoriesSection />
