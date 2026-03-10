@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, type FormEvent } from "react"
+import Image from "next/image"
+
+const SCHEDULE_URL = "https://calendar.app.google/T1KHK1wcPwEmspiW9"
 
 const tiers = [
   {
@@ -107,28 +109,35 @@ function TierCard({ tier }: { tier: (typeof tiers)[0] }) {
         ))}
       </ul>
 
-      <button
-        type="button"
-        className={`mt-auto w-full rounded-lg border px-4 py-2.5 text-xs font-medium tracking-wide transition-all duration-300 ${
-          tier.highlighted
-            ? "border-primary/30 bg-primary/10 text-primary backdrop-blur-md hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
-            : "border-border/40 bg-transparent text-foreground/80 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-primary"
-        }`}
-      >
-        {tier.name === "Enterprise" ? "Contact Sales" : "Get Started"}
-      </button>
+      {tier.name === "Enterprise" ? (
+        <a
+          href={SCHEDULE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-medium tracking-wide text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-3.5 w-3.5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+          </svg>
+          Schedule Discovery Call
+        </a>
+      ) : (
+        <button
+          type="button"
+          className={`mt-auto w-full rounded-lg border px-4 py-2.5 text-xs font-medium tracking-wide transition-all duration-300 ${
+            tier.highlighted
+              ? "border-primary/30 bg-primary/10 text-primary backdrop-blur-md hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_20px_rgba(52,211,153,0.15)]"
+              : "border-border/40 bg-transparent text-foreground/80 hover:border-primary/30 hover:bg-primary/[0.04] hover:text-primary"
+          }`}
+        >
+          Get Started
+        </button>
+      )}
     </div>
   )
 }
 
 export function GetStartedSection() {
-  const [submitted, setSubmitted] = useState(false)
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <section className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
       {/* Background accent */}
@@ -165,92 +174,46 @@ export function GetStartedSection() {
             </div>
           </div>
 
-          {/* Right: Contact form */}
+          {/* Right: Schedule Discovery Call */}
           <div className="lg:w-2/5">
-            <div className="flex h-full flex-col rounded-xl border border-border/40 bg-card/30 p-8 backdrop-blur-sm">
-              <h3 className="text-lg font-semibold tracking-tight text-foreground">
-                Talk to our team
+            <div className="flex h-full flex-col items-center justify-center rounded-xl border border-primary/20 bg-gradient-to-b from-primary/[0.06] to-transparent p-10 backdrop-blur-sm text-center">
+              {/* Logo */}
+              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-primary/20 bg-primary/5 shadow-[0_0_30px_rgba(52,211,153,0.12)] mb-6">
+                <Image
+                  src="/logo.svg"
+                  alt="GrowWizardAI"
+                  width={56}
+                  height={64}
+                  className="drop-shadow-[0_0_8px_rgba(240,208,96,0.4)]"
+                />
+              </div>
+
+              <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                Enterprise Discovery Call
               </h3>
-              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                Describe your AI use case and we will respond within 24 hours
-                with a tailored proposal.
+              <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                Book a 30-minute call with our AI solutions team to discuss your
+                custom requirements and see a tailored demo.
               </p>
 
-              <div className="mt-1 h-px bg-border/30" />
+              <div className="my-6 h-px w-16 bg-border/30" />
 
-              {submitted ? (
-                <div className="my-auto flex flex-col items-center gap-3 py-12 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-6 w-6 text-primary"
-                      aria-hidden="true"
-                    >
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium text-foreground">
-                    Submitted successfully
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {"We'll be in touch within 24 hours."}
-                  </p>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="mt-6 flex flex-1 flex-col gap-5"
-                >
-                  {/* Company Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="company"
-                      className="text-xs font-medium text-foreground/80"
-                    >
-                      Company Name
-                    </label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      required
-                      placeholder="Acme Corp"
-                      className="w-full rounded-lg border border-border/50 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
+              {/* Scheduling CTA */}
+              <a
+                href={SCHEDULE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/10 px-8 py-4 text-sm font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_30px_rgba(52,211,153,0.2)]"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                </svg>
+                Schedule Your Call
+              </a>
 
-                  {/* AI Use Case */}
-                  <div className="flex flex-1 flex-col gap-1.5">
-                    <label
-                      htmlFor="usecase"
-                      className="text-xs font-medium text-foreground/80"
-                    >
-                      AI Use Case
-                    </label>
-                    <textarea
-                      id="usecase"
-                      name="usecase"
-                      required
-                      rows={4}
-                      placeholder="Describe what you want to automate or optimize..."
-                      className="w-full flex-1 resize-none rounded-lg border border-border/50 bg-transparent px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none transition-all duration-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="w-full rounded-lg border border-primary/30 bg-primary/10 px-5 py-3 text-sm font-medium text-primary backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:bg-primary/15 hover:shadow-[0_0_24px_rgba(52,211,153,0.12)]"
-                  >
-                    Submit Inquiry
-                  </button>
-                </form>
-              )}
+              <p className="mt-4 text-xs text-muted-foreground/60">
+                Free consultation &middot; No commitment
+              </p>
             </div>
           </div>
         </div>

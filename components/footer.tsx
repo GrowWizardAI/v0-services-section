@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+const SCHEDULE_URL = "https://calendar.app.google/T1KHK1wcPwEmspiW9"
+
 const footerColumns = [
   {
     title: "Company",
@@ -7,7 +9,7 @@ const footerColumns = [
       { label: "About", href: "#" },
       { label: "Blog", href: "#" },
       { label: "Careers", href: "#" },
-      { label: "Contact", href: "#" },
+      { label: "Schedule a Call", href: SCHEDULE_URL, external: true },
     ],
   },
   {
@@ -102,9 +104,19 @@ export function Footer() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                        {...(("external" in link && link.external) ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className={`text-sm transition-colors duration-200 ${
+                          "external" in link && link.external
+                            ? "text-primary hover:text-primary/80"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
                       >
                         {link.label}
+                        {"external" in link && link.external && (
+                          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} className="inline-block ml-1 h-3 w-3" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 10 10 6m0 0H6.5m3.5 0v3.5" />
+                          </svg>
+                        )}
                       </a>
                     </li>
                   ))}
