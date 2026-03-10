@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 
 const navLinks = [
   { label: "Products", href: "#products" },
@@ -11,22 +12,15 @@ const navLinks = [
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2.5">
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 backdrop-blur-sm shadow-[0_0_12px_rgba(52,211,153,0.08)]">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          className="h-4.5 w-4.5 text-primary"
-          strokeWidth={2}
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"
-          />
-        </svg>
+    <a href="#" className="flex items-center gap-2.5 group">
+      <div className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 backdrop-blur-sm shadow-[0_0_12px_rgba(52,211,153,0.08)] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(52,211,153,0.15)] group-hover:border-primary/30">
+        <Image
+          src="/logo.svg"
+          alt="GrowWizardAI"
+          width={28}
+          height={32}
+          className="drop-shadow-[0_0_4px_rgba(240,208,96,0.3)]"
+        />
       </div>
       <span className="text-lg font-semibold tracking-tight text-foreground">
         GrowWizardAI

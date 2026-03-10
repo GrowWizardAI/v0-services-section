@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 185">
+  <defs>
+    <linearGradient id="hat-body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a2fa0"/>
+      <stop offset="50%" stop-color="#2d1b69"/>
+      <stop offset="100%" stop-color="#1a0e40"/>
+    </linearGradient>
+    <linearGradient id="hat-side" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a0e40" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#1a0e40" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="brim-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d2890"/>
+      <stop offset="100%" stop-color="#1a0e40"/>
+    </linearGradient>
+    <linearGradient id="band-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c8a020"/>
+      <stop offset="50%" stop-color="#f0d060"/>
+      <stop offset="100%" stop-color="#c8a020"/>
+    </linearGradient>
+    <radialGradient id="sky-grad" cx="50%" cy="30%">
+      <stop offset="0%" stop-color="#2a1860"/>
+      <stop offset="100%" stop-color="#0d0820"/>
+    </radialGradient>
+    <filter id="star-glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="tip-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="hat-clip">
+      <path d="M 80,14 L 24,132 Q 80,122 136,132 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Hat shadow -->
+  <ellipse cx="80" cy="148" rx="62" ry="9" fill="#000" opacity="0.35"/>
+
+  <!-- Hat cone -->
+  <path d="M 80,14 L 24,132 Q 80,122 136,132 Z" fill="url(#hat-body)"/>
+
+  <!-- Night sky inside hat -->
+  <rect x="0" y="0" width="160" height="185" fill="url(#sky-grad)" clip-path="url(#hat-clip)" opacity="0.7"/>
+
+  <!-- Shadow side of hat -->
+  <path d="M 80,14 L 136,132 Q 80,122 80,122 Z" fill="url(#hat-side)"/>
+
+  <!-- Stars and constellation (clipped inside hat) -->
+  <g clip-path="url(#hat-clip)" filter="url(#star-glow)">
+    <circle cx="80" cy="35" r="2.8" fill="#f0d060"/>
+    <circle cx="62" cy="58" r="2.2" fill="#f0d060"/>
+    <circle cx="100" cy="54" r="2.2" fill="#f0d060"/>
+    <circle cx="70" cy="80" r="1.9" fill="#f0d060"/>
+    <circle cx="95" cy="76" r="1.9" fill="#f0d060"/>
+    <circle cx="55" cy="98" r="1.7" fill="#f0d060"/>
+    <circle cx="108" cy="92" r="1.7" fill="#f0d060"/>
+    <circle cx="75" cy="112" r="1.5" fill="#f0d060"/>
+    <circle cx="100" cy="108" r="1.5" fill="#f0d060"/>
+    <!-- Tiny background stars -->
+    <circle cx="88" cy="42" r="1" fill="#e8c547" opacity="0.6"/>
+    <circle cx="72" cy="66" r="0.9" fill="#e8c547" opacity="0.5"/>
+    <circle cx="110" cy="70" r="0.8" fill="#e8c547" opacity="0.5"/>
+    <circle cx="48" cy="78" r="0.8" fill="#e8c547" opacity="0.4"/>
+    <circle cx="90" cy="95" r="0.8" fill="#e8c547" opacity="0.5"/>
+    <circle cx="65" cy="105" r="0.7" fill="#e8c547" opacity="0.4"/>
+    <circle cx="112" cy="115" r="0.7" fill="#e8c547" opacity="0.4"/>
+    <circle cx="42" cy="112" r="0.7" fill="#e8c547" opacity="0.3"/>
+    <!-- Constellation lines -->
+    <g stroke="#e8c547" stroke-width="0.6" opacity="0.55" stroke-linecap="round">
+      <line x1="80" y1="35" x2="62" y2="58"/>
+      <line x1="80" y1="35" x2="100" y2="54"/>
+      <line x1="62" y1="58" x2="70" y2="80"/>
+      <line x1="100" y1="54" x2="95" y2="76"/>
+      <line x1="62" y1="58" x2="100" y2="54"/>
+      <line x1="70" y1="80" x2="95" y2="76"/>
+      <line x1="70" y1="80" x2="55" y2="98"/>
+      <line x1="95" y1="76" x2="108" y2="92"/>
+      <line x1="55" y1="98" x2="75" y2="112"/>
+      <line x1="108" y1="92" x2="100" y2="108"/>
+    </g>
+  </g>
+
+  <!-- Moon crescent (clipped) -->
+  <g opacity="0.75" clip-path="url(#hat-clip)">
+    <circle cx="114" cy="62" r="8" fill="#f0d060" opacity="0.9"/>
+    <circle cx="118" cy="59" r="7" fill="#1a0e40"/>
+  </g>
+
+  <!-- Brim top -->
+  <path d="M 10,132 Q 80,120 150,132 Q 80,144 10,132 Z" fill="url(#brim-grad)"/>
+  <!-- Brim underside -->
+  <path d="M 10,132 Q 80,144 150,132 Q 80,148 10,132 Z" fill="#0d0820"/>
+  <!-- Brim edge highlight -->
+  <path d="M 10,132 Q 80,120 150,132" stroke="#4a2fa0" stroke-width="1" fill="none" opacity="0.5"/>
+
+  <!-- Gold band -->
+  <path d="M 30,126 Q 80,118 130,126" stroke="url(#band-grad)" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M 30,126 Q 80,118 130,126" stroke="white" stroke-width="1" fill="none" opacity="0.25"/>
+
+  <!-- Buckle -->
+  <rect x="73" y="121" width="14" height="9" rx="1.5" fill="#b8900a" stroke="#f0d060" stroke-width="1"/>
+  <rect x="76" y="123.5" width="8" height="4" rx="0.8" fill="none" stroke="#f0d060" stroke-width="0.8"/>
+  <line x1="80" y1="123.5" x2="80" y2="127.5" stroke="#f0d060" stroke-width="0.8"/>
+
+  <!-- Tip sparkle -->
+  <g filter="url(#tip-glow)">
+    <circle cx="80" cy="14" r="4" fill="#f0d060"/>
+    <line x1="80" y1="4" x2="80" y2="10" stroke="#f0d060" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="80" y1="18" x2="80" y2="24" stroke="#f0d060" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="70" y1="14" x2="76" y2="14" stroke="#f0d060" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="84" y1="14" x2="90" y2="14" stroke="#f0d060" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="73" y1="7" x2="76.5" y2="10.5" stroke="#f0d060" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="83.5" y1="17.5" x2="87" y2="21" stroke="#f0d060" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="87" y1="7" x2="83.5" y2="10.5" stroke="#f0d060" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="76.5" y1="17.5" x2="73" y2="21" stroke="#f0d060" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Floating sparkles -->
+  <g filter="url(#star-glow)" opacity="0.8">
+    <circle cx="22" cy="55" r="1.5" fill="#f0d060"/>
+    <line x1="22" y1="51" x2="22" y2="59" stroke="#f0d060" stroke-width="0.8" stroke-linecap="round"/>
+    <line x1="18" y1="55" x2="26" y2="55" stroke="#f0d060" stroke-width="0.8" stroke-linecap="round"/>
+    <circle cx="148" cy="80" r="1.8" fill="#f0d060"/>
+    <line x1="148" y1="75" x2="148" y2="85" stroke="#f0d060" stroke-width="0.9" stroke-linecap="round"/>
+    <line x1="143" y1="80" x2="153" y2="80" stroke="#f0d060" stroke-width="0.9" stroke-linecap="round"/>
+    <circle cx="140" cy="40" r="1" fill="#f0d060" opacity="0.6"/>
+    <circle cx="18" cy="100" r="1" fill="#f0d060" opacity="0.5"/>
+  </g>
+</svg>
