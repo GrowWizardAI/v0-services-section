@@ -184,6 +184,7 @@ export function GetStartedSection() {
                   alt="GrowWizardAI"
                   width={56}
                   height={64}
+                  style={{ width: "auto", height: "auto" }}
                   className="drop-shadow-[0_0_8px_rgba(240,208,96,0.4)]"
                 />
               </div>

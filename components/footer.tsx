@@ -41,6 +41,7 @@ function FooterLogo() {
           alt="GrowWizardAI"
           width={28}
           height={32}
+          style={{ width: "auto", height: "auto" }}
           className="drop-shadow-[0_0_4px_rgba(240,208,96,0.3)]"
         />
       </div>
