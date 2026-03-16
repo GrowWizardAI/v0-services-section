@@ -26,6 +26,13 @@ const footerColumns = [
       { label: "Supabase", href: "https://supabase.com" },
     ],
   },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+    ],
+  },
 ]
 
 function FooterLogo() {
@@ -96,7 +103,7 @@ export function Footer() {
           </div>
 
           {/* Link columns */}
-          <div className="grid flex-1 grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid flex-1 grid-cols-2 gap-8 sm:grid-cols-4">
             {footerColumns.map((col) => (
               <div key={col.title} className="flex flex-col gap-4">
                 <h4 className="text-xs font-semibold uppercase tracking-widest text-foreground/70">
