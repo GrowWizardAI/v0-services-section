@@ -1,8 +1,8 @@
 const capabilities = [
   {
-    title: "Custom Fine-tuning",
+    title: "Vapi — Voice Orchestration",
     description:
-      "Adapt foundation models to your domain with proprietary datasets, achieving production-grade accuracy on specialized tasks.",
+      "Real-time AI phone call infrastructure. Handles call routing, speech detection, interruption handling, and live conversation management at scale.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -13,16 +13,14 @@ const capabilities = [
         strokeLinejoin="round"
         className="h-5 w-5"
       >
-        <path d="M12 3v3m0 12v3M3 12h3m12 0h3" />
-        <circle cx="12" cy="12" r="4" />
-        <path d="m14.83 9.17 1.41-1.41m-8.48 8.48 1.41-1.41m0-5.66-1.41-1.41m8.48 8.48-1.41-1.41" />
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
       </svg>
     ),
   },
   {
-    title: "Vector Database Seeding",
+    title: "ElevenLabs — Voice Synthesis",
     description:
-      "Ingest, chunk, and embed millions of documents into high-performance vector stores for sub-second semantic retrieval.",
+      "Human-quality AI voices for every outbound call. Natural prosody, real-time generation, and voices indistinguishable from human agents.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -33,36 +31,16 @@ const capabilities = [
         strokeLinejoin="round"
         className="h-5 w-5"
       >
-        <ellipse cx="12" cy="6" rx="8" ry="3" />
-        <path d="M4 6v6c0 1.657 3.582 3 8 3s8-1.343 8-3V6" />
-        <path d="M4 12v6c0 1.657 3.582 3 8 3s8-1.343 8-3v-6" />
+        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+        <line x1="12" x2="12" y1="19" y2="22" />
       </svg>
     ),
   },
   {
-    title: "Automated QA",
+    title: "n8n — Workflow Automation",
     description:
-      "Continuous evaluation pipelines that benchmark model outputs against golden datasets and flag regression in real time.",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5"
-      >
-        <path d="M9 12l2 2 4-4" />
-        <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" />
-        <path d="M12 7v1m0 8v1" />
-      </svg>
-    ),
-  },
-  {
-    title: "Deployment Orchestration",
-    description:
-      "Zero-downtime rollouts with canary testing, automatic rollback, and multi-region inference endpoint management.",
+      "Self-hosted open source automation engine. Powers campaign scheduling, webhook handling, lead routing, and calendar booking — no per-task SaaS fees.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -81,6 +59,26 @@ const capabilities = [
       </svg>
     ),
   },
+  {
+    title: "Supabase — Lead Database",
+    description:
+      "Multi-tenant PostgreSQL CRM with row-level security. Stores lead lists, call outcomes, qualification scores, and client data — fully isolated per client.",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+      >
+        <ellipse cx="12" cy="6" rx="8" ry="3" />
+        <path d="M4 6v6c0 1.657 3.582 3 8 3s8-1.343 8-3V6" />
+        <path d="M4 12v6c0 1.657 3.582 3 8 3s8-1.343 8-3v-6" />
+      </svg>
+    ),
+  },
 ]
 
 export function CapabilitiesSection() {
@@ -90,11 +88,11 @@ export function CapabilitiesSection() {
         {/* Header */}
         <div className="mb-12 text-center">
           <h3 className="text-balance text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Core Capabilities
+            Built on best-in-class infrastructure
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground">
-            The building blocks behind every deployment — engineered for
-            reliability, speed, and precision.
+            Every campaign runs on a purpose-built stack — open source where possible,
+            best-in-class where quality matters most.
           </p>
         </div>
 

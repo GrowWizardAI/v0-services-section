@@ -3,27 +3,27 @@ const footerColumns = [
     title: "Company",
     links: [
       { label: "About", href: "#services" },
-      { label: "Results", href: "#success-stories" },
-      { label: "Capabilities", href: "#capabilities" },
-      { label: "Contact", href: "#contact-form" },
+      { label: "Contact", href: "mailto:billhawk@growwizardai.com" },
+      { label: "SMB Resources", href: "https://smb.growwizardai.com" },
+      { label: "Book a Call", href: "#contact-form" },
     ],
   },
   {
     title: "Services",
     links: [
-      { label: "AI Automation", href: "#services" },
-      { label: "Custom LLMs", href: "#services" },
-      { label: "Workflow Optimization", href: "#services" },
-      { label: "Consulting", href: "#contact-form" },
+      { label: "Reactivation Campaigns", href: "#services" },
+      { label: "Inbound AI Agent", href: "#services" },
+      { label: "Done-for-You Setup", href: "#services" },
+      { label: "Get Started", href: "#get-started" },
     ],
   },
   {
-    title: "Legal",
+    title: "Stack",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Security", href: "#" },
-      { label: "Compliance", href: "#" },
+      { label: "Vapi", href: "https://vapi.ai" },
+      { label: "ElevenLabs", href: "https://elevenlabs.io" },
+      { label: "n8n", href: "https://n8n.io" },
+      { label: "Supabase", href: "https://supabase.com" },
     ],
   },
 ]
@@ -63,8 +63,8 @@ export function Footer() {
           <div className="flex flex-col gap-5 lg:max-w-xs">
             <FooterLogo />
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Enterprise AI automation, custom language models, and workflow
-              optimization to transform your business operations.
+              AI voice reactivation campaigns for small businesses. We turn dead
+              lead lists into booked appointments — fully automated, no human dialers.
             </p>
             {/* Social row */}
             <div className="flex items-center gap-3">
@@ -125,7 +125,7 @@ export function Footer() {
             {"© 2026 GrowWizardAI. All rights reserved."}
           </p>
           <p className="text-xs text-muted-foreground/60">
-            Built with intelligence. Deployed at scale.
+            Powered by Vapi · ElevenLabs · n8n · Supabase
           </p>
         </div>
       </div>

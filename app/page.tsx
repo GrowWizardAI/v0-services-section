@@ -1,4 +1,5 @@
 import { ServicesSection } from "@/components/services-section"
+import { TechStackSection } from "@/components/tech-stack-section"
 import { CapabilitiesSection } from "@/components/capabilities-section"
 import { SuccessStoriesSection } from "@/components/success-stories-section"
 import { AiDemoSection } from "@/components/ai-demo-section"
@@ -19,10 +20,13 @@ export default function Page() {
       {/* Services */}
       <ServicesSection />
 
+      {/* Tech Stack / Powered By */}
+      <TechStackSection />
+
       {/* Capabilities */}
       <CapabilitiesSection />
 
-      {/* Success Stories */}
+      {/* Who It's For */}
       <SuccessStoriesSection />
 
       {/* AI Demo */}

@@ -7,42 +7,42 @@ import { AutomationVisual, LlmVisual, WorkflowVisual } from "@/components/card-v
 const services = [
   {
     icon: <AutomationIcon className="h-5 w-5" />,
-    title: "AI Automation",
+    title: "Database Reactivation Campaigns",
     description:
-      "Deploy intelligent agents that handle repetitive tasks, reduce human error, and operate around the clock at enterprise scale.",
+      "We take your list of dead leads or lapsed customers, run automated AI voice call campaigns that qualify interest in real time, and book appointments directly to your calendar — zero human dialers.",
     features: [
-      "Autonomous task orchestration",
-      "Real-time decision engines",
-      "Multi-system integration pipelines",
-      "Self-healing error recovery",
+      "Up to 500 contacts per campaign",
+      "Real-time qualification conversations",
+      "Direct Google Calendar booking",
+      "Full call transcript & lead scoring",
     ],
     visual: <AutomationVisual />,
     span: "wide" as const,
   },
   {
     icon: <LlmIcon className="h-5 w-5" />,
-    title: "Custom LLMs",
+    title: "Inbound AI Voice Agent",
     description:
-      "Purpose-built language models fine-tuned on your proprietary data for maximum accuracy and domain expertise.",
+      "Never miss a call. Our AI voice agent answers inbound calls 24/7, qualifies the caller, and books them — even when you're on a job, with a client, or closed for the day.",
     features: [
-      "Domain-specific fine-tuning",
-      "RAG-powered knowledge retrieval",
-      "Sub-100ms inference latency",
-      "SOC 2 compliant training pipelines",
+      "24/7 call answering",
+      "Natural qualification conversations",
+      "Instant calendar booking",
+      "Call summary delivered to your inbox",
     ],
     visual: <LlmVisual />,
     span: "default" as const,
   },
   {
     icon: <WorkflowIcon className="h-5 w-5" />,
-    title: "Workflow Optimization",
+    title: "Done-for-You Setup",
     description:
-      "AI-driven process mining and optimization that identifies bottlenecks and automates complex business workflows.",
+      "We build and run the entire system for you. No software to manage, no prompts to write. You provide the lead list — we deliver booked appointments.",
     features: [
-      "Process intelligence mapping",
-      "Adaptive routing logic",
-      "Predictive capacity planning",
-      "Real-time performance dashboards",
+      "Full campaign build & launch",
+      "Custom AI voice scripting",
+      "CRM and calendar integration",
+      "Ongoing optimization & reporting",
     ],
     visual: <WorkflowVisual />,
     span: "default" as const,
@@ -50,10 +50,10 @@ const services = [
 ]
 
 const stats = [
-  { value: "10x", label: "Faster Processing" },
-  { value: "99.9%", label: "Uptime SLA" },
-  { value: "500+", label: "Models Deployed" },
-  { value: "$2.4M", label: "Avg. Cost Savings" },
+  { value: "500+", label: "Contacts per Campaign" },
+  { value: "$1,500", label: "Campaign Starting Price" },
+  { value: "24/7", label: "Automated Calling" },
+  { value: "0", label: "Human Dialers Needed" },
 ]
 
 export function ServicesSection() {
@@ -75,11 +75,11 @@ export function ServicesSection() {
             </span>
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Enterprise AI, built for scale
+            AI voice automation for small businesses
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            From intelligent automation to custom language models, we deliver the
-            infrastructure that powers the next generation of business operations.
+            We turn dead lead lists into booked appointments using AI voice agents —
+            fully automated, no human dialers, no monthly staff costs.
           </p>
         </div>
 

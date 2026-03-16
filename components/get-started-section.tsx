@@ -2,43 +2,44 @@
 
 const tiers = [
   {
-    name: "Starter",
-    price: "$2,400",
-    period: "/mo",
-    description: "For teams exploring AI automation with guided onboarding.",
+    name: "Campaign",
+    price: "$1,500",
+    period: "/campaign",
+    description: "One-time reactivation campaign for businesses testing the system.",
     features: [
-      "1 custom model fine-tune",
-      "Up to 500k API calls / mo",
-      "Standard support (48h SLA)",
-      "Single-region deployment",
+      "Up to 500 contacts",
+      "30-day campaign window",
+      "AI voice script included",
+      "Full call transcripts & lead scoring",
+      "Google Calendar booking",
     ],
     highlighted: false,
   },
   {
-    name: "Growth",
-    price: "$7,500",
+    name: "Monthly",
+    price: "$2,500",
     period: "/mo",
-    description: "For scaling teams that need production-grade AI infrastructure.",
+    description: "Ongoing campaigns + inbound agent for businesses ready to scale.",
     features: [
-      "3 custom model fine-tunes",
-      "Up to 5M API calls / mo",
-      "Priority support (4h SLA)",
-      "Multi-region deployment",
-      "Vector DB seeding pipeline",
+      "Unlimited contacts per month",
+      "Outbound + inbound AI agent",
+      "Priority campaign scheduling",
+      "Monthly performance report",
+      "Dedicated campaign manager",
     ],
     highlighted: true,
   },
   {
-    name: "Enterprise",
+    name: "Custom",
     price: "Custom",
     period: "",
-    description: "Dedicated infrastructure, compliance, and white-glove service.",
+    description: "Multi-location or enterprise rollouts with custom integrations.",
     features: [
-      "Unlimited fine-tunes",
-      "Unlimited API calls",
-      "Dedicated success engineer",
-      "On-prem / private cloud",
-      "SOC 2 & HIPAA ready",
+      "Multiple locations / territories",
+      "CRM integration (HubSpot, GHL, etc.)",
+      "Custom voice & script development",
+      "White-label available",
+      "Dedicated onboarding",
       "Custom SLA",
     ],
     highlighted: false,
@@ -142,8 +143,8 @@ export function GetStartedSection() {
             Get Started
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
-            Choose the plan that fits your scale, then book a free discovery call
-            and we will architect a solution together.
+            Start with a single campaign and see the results, or go monthly for
+            ongoing reactivation and inbound coverage.
           </p>
         </div>
 
