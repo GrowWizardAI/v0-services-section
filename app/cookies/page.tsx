@@ -359,9 +359,9 @@ export default function CookiesPage() {
           us at:
         </p>
         <address className="not-italic space-y-0.5 text-sm">
-          <p className="font-medium text-foreground">GrowWizardAI LLC</p>
-          <p>502 W 7th St Ste 100</p>
-          <p>Erie, PA 16502</p>
+          <p className="font-medium text-foreground">GotHawk Solutions LLC (DBA GrowWizardAI)</p>
+          <p>3401 Hartzdale Drive, Suite 103B</p>
+          <p>Camp Hill, PA 17011</p>
           <p>United States</p>
           <p>
             Phone:{" "}
