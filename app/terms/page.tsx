@@ -29,7 +29,7 @@ export default function TermsPage() {
           We operate <a href="https://growwizardai.com" className="text-primary hover:underline">https://growwizardai.com</a>, as well as any other related products and services that refer or link to these legal terms (the &ldquo;Legal Terms&rdquo;) (collectively, the &ldquo;Services&rdquo;).
         </p>
         <p>
-          You can contact us by email at <a href="mailto:support@growwizardai.com" className="text-primary hover:underline">support@growwizardai.com</a> or by mail to GrowWizardAI LLC, 502 W 7th St Ste 100, Erie, PA 16502, USA.
+          You can contact us by email at <a href="mailto:hello@growwizardai.com" className="text-primary hover:underline">hello@growwizardai.com</a> or by mail to GotHawk Solutions LLC (DBA GrowWizardAI), 3401 Hartzdale Drive, Suite 103B, Camp Hill, PA 17011, USA.
         </p>
         <p>
           These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity (&ldquo;you&rdquo;), and GrowWizardAI LLC, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
@@ -94,7 +94,7 @@ export default function TermsPage() {
           Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
         </p>
         <p>
-          If you wish to make any use of the Services, Content, or Marks other than as set out in this section, please address your request to: <a href="mailto:support@growwizardai.com" className="text-primary hover:underline">support@growwizardai.com</a>.
+          If you wish to make any use of the Services, Content, or Marks other than as set out in this section, please address your request to: <a href="mailto:hello@growwizardai.com" className="text-primary hover:underline">hello@growwizardai.com</a>.
         </p>
         <p>We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.</p>
         <p>Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.</p>
@@ -151,7 +151,7 @@ export default function TermsPage() {
           These Legal Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE LEGAL TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES TO ANY PERSON FOR ANY REASON OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE LEGAL TERMS OR OF ANY APPLICABLE LAW OR REGULATION.
         </p>
         <p>
-          For monthly subscription clients, either party may terminate the subscription by providing 30 days&apos; written notice to <a href="mailto:support@growwizardai.com" className="text-primary hover:underline">support@growwizardai.com</a>. Cancellations received less than 30 days before renewal will take effect the following billing cycle. Any campaigns already in progress at the time of cancellation will be completed as scheduled.
+          For monthly subscription clients, either party may terminate the subscription by providing 30 days&apos; written notice to <a href="mailto:hello@growwizardai.com" className="text-primary hover:underline">hello@growwizardai.com</a>. Cancellations received less than 30 days before renewal will take effect the following billing cycle. Any campaigns already in progress at the time of cancellation will be completed as scheduled.
         </p>
 
         <h2 className="text-xl font-semibold text-foreground mt-10">9. MODIFICATIONS AND INTERRUPTIONS</h2>
@@ -161,7 +161,7 @@ export default function TermsPage() {
 
         <h2 className="text-xl font-semibold text-foreground mt-10">10. GOVERNING LAW</h2>
         <p>
-          These Legal Terms shall be governed by and defined following the laws of the Commonwealth of Pennsylvania, United States. GrowWizardAI LLC and yourself irrevocably consent that the courts of Erie County, Pennsylvania shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these Legal Terms, subject to the arbitration provisions below.
+          These Legal Terms shall be governed by and defined following the laws of the Commonwealth of Pennsylvania, United States. GrowWizardAI LLC and yourself irrevocably consent that the courts of Cumberland County, Pennsylvania shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these Legal Terms, subject to the arbitration provisions below.
         </p>
 
         <h2 className="text-xl font-semibold text-foreground mt-10">11. DISPUTE RESOLUTION</h2>
@@ -171,7 +171,7 @@ export default function TermsPage() {
         </p>
         <h3 className="text-base font-semibold text-foreground">Binding Arbitration</h3>
         <p>
-          Any dispute arising out of or in connection with these Legal Terms that cannot be resolved through informal negotiation shall be finally resolved by binding arbitration administered by the American Arbitration Association (&ldquo;AAA&rdquo;) under its Commercial Arbitration Rules. The number of arbitrators shall be one (1). The seat of arbitration shall be Erie, Pennsylvania, USA. The language of the proceedings shall be English. The governing law shall be the substantive law of the Commonwealth of Pennsylvania.
+          Any dispute arising out of or in connection with these Legal Terms that cannot be resolved through informal negotiation shall be finally resolved by binding arbitration administered by the American Arbitration Association (&ldquo;AAA&rdquo;) under its Commercial Arbitration Rules. The number of arbitrators shall be one (1). The seat of arbitration shall be Camp Hill, Pennsylvania, USA. The language of the proceedings shall be English. The governing law shall be the substantive law of the Commonwealth of Pennsylvania.
         </p>
         <h3 className="text-base font-semibold text-foreground">Restrictions</h3>
         <p>
@@ -232,12 +232,12 @@ export default function TermsPage() {
         <p>In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:</p>
         <address className="not-italic mt-2 space-y-1">
           <p className="font-medium text-foreground">GrowWizardAI LLC</p>
-          <p>502 W 7th St Ste 100</p>
-          <p>Erie, PA 16502</p>
+          <p>3401 Hartzdale Drive, Suite 103B</p>
+          <p>Camp Hill, PA 17011</p>
           <p>United States</p>
           <p>
-            <a href="mailto:support@growwizardai.com" className="text-primary hover:underline">
-              support@growwizardai.com
+            <a href="mailto:hello@growwizardai.com" className="text-primary hover:underline">
+              hello@growwizardai.com
             </a>
           </p>
         </address>
